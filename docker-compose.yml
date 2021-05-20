@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  cowin8914:
+    image: cowin8914
+    build:
+      context: .
+      dockerfile: ./Dockerfile
