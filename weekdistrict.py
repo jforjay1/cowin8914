@@ -1,5 +1,5 @@
 import requests
-import pywhatkit
+#import pywhatkit
 import json
 import datetime
 import telebot
