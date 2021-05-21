@@ -16,6 +16,12 @@ knowndates = []
 skippincode = ""
 skipdate = ""
 
+api_id = '4081179'
+api_hash = 'b230a9d343079e204a69719a79cbecce'
+token = '1813049791:AAEQwqA1AsRHofLLIp0zW9bDVcw1mikVewQ'
+phone = '+917016062635'
+
+
 x = datetime.datetime.now()
 myTuple = (x.strftime("%d"),x.strftime("%m"),x.strftime("%Y"))
 loopstatus = False
@@ -45,28 +51,28 @@ while not loopstatus:
                             #loopstatus = True
                             #print(loopstatus)
         except json.decoder.JSONDecodeError:
-            print("<---------- For pincode "+str(x['name'])+" and date "+str(x['date'])+" ----------->\n No Appoinments")
+            try:
+                print("<---------- For pincode "+str(x['name'])+" and date "+str(x['date'])+" ----------->\n No Appoinments")
+            except KeyError:
+                pass
         except KeyError:
             pass
     print(looptrack,"times")
     looptrack = looptrack + 1
-    time.sleep(40)
+    time.sleep(60)
 
     #telegram code
-    listToStr = '\n'.join([str(elem) for elem in final_message])
-    api_id = '4081179'
-    api_hash = 'b230a9d343079e204a69719a79cbecce'
-    token = '1813049791:AAEQwqA1AsRHofLLIp0zW9bDVcw1mikVewQ'
-    phone = '+917016062635'
+
+    listToStr = '\n'.join([str(elem) for elem in final_message]) 
     client = TelegramClient('session', api_id, api_hash)
     client.connect()
     if not client.is_user_authorized():
-        client.send_code_request(phone)
-        client.sign_in(phone, input('Enter the code: '))   
+            client.send_code_request(phone)
+            client.sign_in(phone, input('Enter the code: '))
+    entity=client.get_input_entity('jaypatel8914')  
     try:
-        entity=client.get_entity('jaypatel8914')
         client.send_message(entity, listToStr)
     except Exception as e:
         print(e)
-    client.disconnect()
     final_message.clear()
+    client.disconnect()
