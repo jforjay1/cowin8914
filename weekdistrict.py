@@ -12,7 +12,9 @@ header = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/5
 district = [770,160]
 final_message = []
 knownpincodes = []
+knowndates = []
 skippincode = ""
+skipdate = ""
 
 x = datetime.datetime.now()
 myTuple = (x.strftime("%d"),x.strftime("%m"),x.strftime("%Y"))
@@ -30,13 +32,16 @@ while not loopstatus:
                     ses = x['sessions']
                     fee_type = x['fee_type']
                     for s in ses:
-                        if (x['pincode'] in knownpincodes):
+                        if ((x['pincode'] in knownpincodes) and (x['date'] in knowndates)):
                             skippincode = x['pincode']
-                        if ((s['available_capacity_dose1']>0) and (fee_type=='Free') and (s['min_age_limit']==45) and (skippincode!=x['pincode'])):
+                            skipdate = x['date']
+                        if ((s['available_capacity_dose1']>0) and (fee_type=='Free') and (s['min_age_limit']==45) and (skippincode!=x['pincode']) and (skipdate!=x['date'])):
                             message = "\n For Pincode "+str(x['pincode'])+"("+str(x['district_name'])+") and date "+str(s['date'])+" total availablility of age group above 45 is "+str(s['available_capacity'])+"\n Dose 1 are "+str(s['available_capacity_dose1'])+" and Dose 2 are "+str(s['available_capacity_dose2'])
                             final_message.append(message)
                             pin = x['pincode']
                             knownpincodes.append(pin)
+                            d = x['date']
+                            knowndates.append(d)
                             #loopstatus = True
                             #print(loopstatus)
         except json.decoder.JSONDecodeError:
@@ -45,7 +50,7 @@ while not loopstatus:
             pass
     print(looptrack,"times")
     looptrack = looptrack + 1
-    time.sleep(5)
+    time.sleep(40)
 
     #telegram code
     listToStr = '\n'.join([str(elem) for elem in final_message])
