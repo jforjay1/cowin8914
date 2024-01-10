@@ -17,10 +17,10 @@ knowndates = []
 skippincode = ""
 skipdate = ""
 IST = pytz.timezone('Asia/Kolkata')
-api_id = '4081179'
-api_hash = 'b230a9d343079e204a69719a79cbecce'
-token = '1813049791:AAEQwqA1AsRHofLLIp0zW9bDVcw1mikVewQ'
-phone = '+917016062635'
+api_id = '4082179' #Replace with your CoWIN API
+api_hash = 'b230a9d343079e204a69719a79cdscce' #Replace with your CoWIN hash
+token = '1813049791:AAEQwqA1AsRHofLLIp0zW3daDVcw1mikVewQ' #Replace with your Telegram token
+phone = '+911234567890' #Replace with your phone number
 
 loopstatus = False
 looptrack = 1
@@ -70,7 +70,7 @@ while not loopstatus:
     if not client.is_user_authorized():
             client.send_code_request(phone)
             client.sign_in(phone, input('Enter the code: '))
-    entity=client.get_input_entity('jaypatel8914')  
+    entity=client.get_input_entity('your_username')  #Replace with your Telegram Username
     try:
         client.send_message(entity, listToStr)
     except Exception as e:
