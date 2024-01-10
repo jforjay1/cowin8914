@@ -1,3 +1,7 @@
 telebot==0.0.4
 telethon==1.21.1
 requests==2.21.0
+selenium
+requests
+telethon
+webdriver
