@@ -1,4 +1,4 @@
-<h1 align="center">COVID-19 Vaccine Slot Finder: Python Selenium Webdriver Application 🚀</h1>
+<h1 align="center">CoWIN Vaccine Slot Finder😷</h1>
 
 ## Overview 📖
 
@@ -18,14 +18,16 @@ Ensure you have Python and Selenium WebDriver installed on your system. You'll a
 
 #### Installation and Setup 📦
 
-Clone the repository to your local machine.
+Clone the repository to your local machine by:
+
+```bash
+git clone https://github.com/jforjay1/cowin8914.git
+```
 
 Install the necessary Python dependencies:
 
 ```bash
-pip install selenium
-pip install requests
-pip install 
+pip install requirements.txt
 ```
 
 Set up your Telegram bot and obtain the API token.
@@ -38,7 +40,7 @@ Input your district details and Telegram number in the designated configuration 
 Run the Python script to start monitoring vaccine slots:
 
 ```bash
-python .py
+python weekdistrict.py
 ```
 Stay alert for Telegram notifications regarding new appointment slots.
 
